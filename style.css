@@ -1,0 +1,288 @@
+ /* 1. إعدادات عامة للموقع */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    direction: rtl; /* عشان الكلام العربي يتظبط */
+}
+
+/* 2. تنسيق الهيدر (factory catalog) */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.circular-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin-bottom: 15px;
+}
+
+/* 3. الحاوية الأساسية (لـ 3 كروت بالعرض) */
+.main-wrapper, .types-container, .products-grid {
+    display: flex;
+    flex-wrap: wrap; /* عشان ينزلوا تحت بعض في الموبايل */
+    justify-content: center; /* سنترة الكروت في نص الصفحة */
+    gap: 25px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 4. تنسيق الكارت الموحد (الضربة القاضية للتوسيط) */
+.card, .type-card, .product-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px; /* عرض مناسب جداً */
+    display: flex;
+    flex-direction: column; /* العناصر تحت بعض */
+    align-items: center;    /* سنترة كل حاجة جوه الكارت */
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .type-card:hover, .product-card:hover {
+    transform: translateY(-10px); /* حركة خفيفة لفوق */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* 5. تنسيق الصور داخل الكروت */
+.img-box {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* بتملى المربع من غير ما تتمط */
+}
+
+/* 6. تنسيق النصوص */
+h1, h2, h3 {
+    color: #333;
+    margin: 10px 0;
+}
+
+p.info {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60; /* لون أخضر للفلوس */
+    margin: 10px 0;
+}
+
+/* 7. تنسيق الزراير (Buttons) */
+.card a, .type-card a, .product-card a {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; /* شكل بيضاوي شيك */
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: auto; /* يخلي الزرار دايماً تحت */
+    transition: 0.3s;
+    width: 80%;
+}
+
+.card a:hover, .type-card a:hover {
+    background-color: #0056b3;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+/* الحاوية الأساسية اللي شايلة الكروت */
+.main-wrapper, .types-container, .products-grid {
+    display: flex;             /* تفعيل النظام المرن */
+    flex-wrap: wrap;           /* أهم سطر: بيخلي العناصر تنزل تحت بعض لما المساحة تضيق */
+    justify-content: center;    /* توسيط الكروت بالعرض في كل الحالات */
+    align-items: flex-start;   /* محاذاة الكروت من الأعلى */
+    gap: 20px;                 /* مسافة ثابتة بين الكروت */
+    padding: 20px;
+    width: 100%;               /* تاخد عرض الشاشة كله */
+    box-sizing: border-box;    /* عشان الـ padding ميخربش العرض */
+}
+
+/* تنسيق الكارت نفسه */
+.card, .type-card, .product-card {
+    flex: 0 1 280px;           /* بيخلي الكارت ميزيدش عن 280px ويصغر لو مفيش مساحة */
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;    /* ترتيب المحتوى جوه الكارت فوق بعض */
+    align-items: center;       /* توسيط كل حاجة جوه الكارت */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+/* تعديل خاص للموبايل (اختياري لزيادة الدقة) */
+@media (max-width: 600px) {
+    .card, .type-card, .product-card {
+        flex: 0 1 90%;         /* في الموبايل الكارت ياخد 90% من عرض الشاشة عشان يظهر كبير في النص */
+        max-width: 320px;
+    }
+}
+/* 1. تصفير شامل للمتصفح */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* عشان الحسابات تطلع صح */
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* سنترة الهيدر والحاويات في نص الشاشة */
+}
+
+/* 2. الهيدر */
+header {
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    background: white;
+}
+
+/* 3. الحاوية (السر هنا) */
+.main-wrapper, .types-container, .products-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important; /* سنترة الكروت بالعرض */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* عشان متبقاش عريضة بزيادة */
+    padding: 40px 10px;
+}
+
+/* 4. الكارت */
+.card, .type-card, .product-card {
+    background: white;
+    width: 280px; /* عرض ثابت */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* سنترة الكلام والزرار جوه الكارت */
+    text-align: center;
+}
+
+/* 5. الزراير والصور */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+/* الحاوية اللي شايلة الصورة جوه الكارت */
+.img-box {
+    width: 100%;
+    height: 220px; /* ممكن تزود الطول شوية عشان القميص يبان براحته */
+    background-color: #f9f9f9; /* خلفية خفيفة عشان لو الصورة أبعادها مختلفة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* الصورة نفسها */
+.img-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ده اللي هيخلي الصورة كلها تبان من غير قص */
+    display: block;
+}
+.footer-full-width {
+    width: 100%;             /* مالي عرض الشاشة */
+    background-color: #222;  /* لون غامق فخم */
+    color: #ffffff;          /* لون النص أبيض */
+    padding: 20px 0;         /* مساحة فوق وتحت الكلام */
+    margin-top: 50px;        /* يبعد عن الكروت اللي فوقه */
+    border-top: 3px solid #007bff; /* خط أزرق شيك من فوق */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;  /* بيخلي الكلام يترص تحت بعضه */
+    align-items: center;     /* بيخلي الكلام في نص الشاشة بالضبط */
+    justify-content: center;
+    gap: 10px;               /* مسافة بين السطرين */
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 0;               /* تصفير المسافات التلقائية */
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+/* تنسيق الهيدر بالكامل */
+.site-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* سنترة اللوجو والكلام */
+    justify-content: center;
+    padding: 30px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* تنسيق اللوجو الدائري */
+.main-logo {
+    width: 150px;           /* حجم اللوجو */
+    height: 150px;          /* لازم الطول يساوي العرض عشان يطلع دائرة صح */
+    border-radius: 50%;     /* ده اللي بيخليه دائرة */
+    object-fit: cover;      /* بيخلي الصورة تملأ الدائرة بدون تمطيط */
+    border: 4px solid #007bff; /* إطار أزرق شيك حول اللوجو */
+    margin-bottom: 15px;    /* مسافة بين اللوجو واسم المصنع */
+    display: block;
+}
+
+/* تنسيق الكلام اللي تحت اللوجو */
+.site-header h1 {
+    font-size: 28px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #777;
+}
