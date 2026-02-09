@@ -286,3 +286,44 @@ a {
     font-size: 18px;
     color: #777;
 }
+     /* تصميم نافذة التكبير */
+.modal {
+    display: none; /* مخفية في البداية */
+    position: fixed;
+    z-index: 9999; /* عشان تظهر فوق كل حاجة */
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); /* خلفية سودة شفافة */
+    cursor: zoom-out;
+}
+/* علامة الماوس لما ييجي على الصورة في الكارت */
+.img-box img {
+    cursor: zoom-in;
+}
+.thread-container {
+    position: fixed; /* عشان تفضل على الشمال دايماً */
+    left: 20px;      /* المسافة من الشمال */
+    top: 0;
+    height: 100vh;   /* واخدة طول الشاشة */
+    z-index: 1000;   /* فوق كل العناصر */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spool {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+#thread-line {
+    width: 2px;
+    background-color: #333; /* لون الخيط */
+    height: 0;             /* هيفضل 0 وهنكبره بالجافاسكريبت */
+    transition: height 0.1s linear;
+}
+
+#needle {
+    font-size: 25px;
+    margin-top: -5px;      /* عشان يلمس الخيط */
+}
